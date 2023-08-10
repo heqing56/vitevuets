@@ -24,7 +24,7 @@ import { storeToRefs } from 'pinia'
 defineOptions({
   name: "systemlogout",
   title: "退出",
-  order: 11,
+  order: 3,
 });
 const userStore = useOptionStore()
 const compositionStore = useCompositionStore()

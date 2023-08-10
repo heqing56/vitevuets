@@ -2,12 +2,12 @@
   <div class="login">
     <div class="card loginForm">
       <h2 class="title">登录</h2>
-      <el-form ref="ruleFormRef"  :rules="rules" :model="form" label-width="60px" class="demo-ruleForm">
+      <el-form ref="ruleFormRef" :rules="rules" :model="form" label-width="60px" class="demo-ruleForm">
         <el-form-item label="账号" prop="name" >
-          <el-input v-model.number="form.name" type="text" autocomplete="off" />
+          <el-input v-model.number="form.name" @keyup.enter.native="submitForm(ruleFormRef)"  type="text" autocomplete="off" />
         </el-form-item>
         <el-form-item label="密码" prop="password" >
-          <el-input v-model.number="form.password" type="password" autocomplete="off" />
+          <el-input v-model.number="form.password" @keyup.enter.native="submitForm(ruleFormRef)" type="password" autocomplete="off" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
@@ -53,7 +53,6 @@ const submitForm = (formEl:FormInstance | undefined) => {
     }
   });
 }
-
 </script>
 <style scoped>
 .login {
