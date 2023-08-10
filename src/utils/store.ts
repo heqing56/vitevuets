@@ -109,7 +109,7 @@ export const clearStore = (params?:ClearStore) => {
  * 判断是否为空
  */
 
-export function validatenull(val:string | any[] | object | null | undefined | boolean) {
+export function validatenull(val:string | string[] | object | null | undefined | boolean) {
   if (typeof val == "boolean") {
     return false;
   }

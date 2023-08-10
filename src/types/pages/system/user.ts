@@ -7,6 +7,7 @@ export interface RuleForm {
   addr: string[];
   date: string;
   desc: string;
+  id?:string
 }
 
 /**组件值 */

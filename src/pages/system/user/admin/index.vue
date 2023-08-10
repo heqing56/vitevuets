@@ -43,6 +43,7 @@ import { onBeforeMount, reactive } from "vue";
 import { getAdminList } from "@/api/system";
 import adminAdd from "./components/detaol.vue";
 import {RuleForm, Typestype, AddOrEditType, PagesType } from '@/types/pages/system/user'
+import { Res ,List} from "@/types/api";
 
 defineOptions({
   name: "admin",
@@ -69,14 +70,13 @@ onBeforeMount(() => {
 });
 /**获取数据列表 */
 
-const getList = () => {
-  getAdminList(pages).then((res:any) => {
+const getList =async <T extends Res<List>>() => {
+  const res:T=await getAdminList(pages) as T
     if (res.code) {
       tableData.length = 0;
      tableData.push(...res.data.list);
       pages.total = res.data.total;
     }
-  });
 };
 /**点击行 的查看或修改 */
 interface Scope{

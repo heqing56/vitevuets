@@ -1,28 +1,26 @@
 <template>
-  <div class="content" v-for="(item, index) in state.list" :key="index">{{ item }}</div>
+  <div class="content" v-for="(item, index) in list" :key="index">{{ item }}</div>
 </template>
 
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { des } from '@/api/about'
+import { Res } from '@/types/api';
 defineOptions({
   name: 'about',
   title: '关于我',
   icon: 'User',
   order: 2,
 })
-interface State{
-  list:string[]
-}
-const state = reactive<State>({
-  list: [],
-})
-const getDesFn = () => {
-  des().then((res: any) => {
+
+let list = reactive<string[]>([])
+
+const getDesFn =async <T extends Res<string[]>>() => {
+  const res :T=await des() as T
+  console.log(res)
     if (res.code) {
-      state.list = res.data
+      list.push(...res.data) 
     }
-  })
 }
 getDesFn()
 

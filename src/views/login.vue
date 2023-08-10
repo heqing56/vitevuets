@@ -25,6 +25,7 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import type { FormInstance, FormRules } from 'element-plus'
 import { RuleForm } from "@/types/views/login";
+import { Res ,UserInfo} from "@/types/api";
 const store = useStore();
 const router = useRouter();
 const ruleFormRef = ref<FormInstance>();
@@ -36,18 +37,17 @@ const rules = reactive<FormRules<RuleForm>>({
   name:[{ required: true, message: '账号必填' }],
   password:[{ required: true, message: '密码必填' }]
 })
-const submitForm = (formEl:FormInstance | undefined) => {
+const submitForm = <T extends Res<UserInfo>>(formEl:FormInstance | undefined) => {
   if (!formEl) return;
-  formEl.validate((valid, fields) => {
+  formEl.validate(async (valid, fields) => {
     if (valid) {
-     login({ name: form.name }).then((res:any) => {
+      const res:T=await login({ name: form.name }) as T
         if (res.code===1) {
           const user = res.data.userInfo;
           store.commit("setToken", res.data.token);
           store.commit("setUserInfo", {...user,name:form.name});
           router.push("/");
         }
-      });
     } else {
       console.log("error submit!", fields);
     }

@@ -2,7 +2,7 @@
 import { RouteRecordRawId } from "@/types/router/pages";
 let routes:RouteRecordRawId[] = []; //导航树形结构路由
 let routesArr:RouteRecordRawId[] = []; //导航一维数组结构和自定义路由结构
-const obj: Record<string, any>= import.meta.glob("@/pages/**/*.vue"); // 查找pages下的所有文件（无论层级）
+const obj:Record<string,Function>= import.meta.glob("@/pages/**/*.vue"); // 查找pages下的所有文件（无论层级）
 const arr:string[] = Object.keys(obj);
 for(let modulePath of arr){
   const moduleName: string = modulePath.replace(
@@ -14,8 +14,16 @@ for(let modulePath of arr){
     if (moduleName.includes(item)) continue;//跳出当前循环到下一次循环
   }
   const val=await obj[modulePath]()
-  const value:any = val.default;
-  if (value.hide) continue; //在页面中添加hide属性表示该页面不自动配置路由
+  interface ModuleObject{
+    title:string,
+    name:string,
+    order?:number,
+    hide?:boolean,
+    icon?:string
+
+  }
+  const value:ModuleObject = val.default;
+  if (value?.hide) continue; //在页面中添加hide属性表示该页面不自动配置路由
   const template: RouteRecordRawId = {
     //路由模板
     path: "/" + moduleName,

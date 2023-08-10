@@ -21,10 +21,11 @@ import { logout } from "@/api/login";
 import { useCompositionStore } from '@/storePinia/useCompositionStore'
 import { useOptionStore } from '@/storePinia/useOptionStore'
 import { storeToRefs } from 'pinia'
+import { Res } from "@/types/api";
 defineOptions({
   name: "systemlogout",
   title: "退出",
-  order: 3,
+  order: 4,
 });
 const userStore = useOptionStore()
 const compositionStore = useCompositionStore()
@@ -35,12 +36,11 @@ const { num, numdoubleCount } = storeToRefs(compositionStore)
 const { increment } = userStore
 const { numincrement } = compositionStore
 const router = useRouter();
-const logouFn = () => {
-  logout().then((res: any) => {
+const logouFn =async <T extends Res>() => {
+  let res:T=await logout() as T
     if (res.code) {
       clearStore();
       router.push("/login");
     }
-  });
 };
 </script>

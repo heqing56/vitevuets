@@ -17,7 +17,7 @@ import { useRouter } from 'vue-router'
 import { logout } from '@/api/login'
 import { clearStore } from '@/utils/store'
 import { useStore } from 'vuex'
-
+import { Res } from '@/types/api'
 const router = useRouter()
 const store = useStore()
 const userInfo = reactive({
@@ -25,15 +25,15 @@ const userInfo = reactive({
   headerImg: store.state.login.userInfo.headerImg,
 
 })
-const logoutFn=()=>{
-  logout().then((res:any) => {
-    if (res.code) {
-      clearStore()
-      router.push('/login')
-    }
-  })
+
+const logoutFn = async <T extends Res>() => {
+  let res: T = await logout() as T
+  if (res.code) {
+    clearStore()
+    router.push('/login')
+  }
 }
-const myinfoFn=()=>{
+const myinfoFn = () => {
   router.push('/system/user/myinfo')
 }
 </script>

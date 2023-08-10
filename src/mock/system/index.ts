@@ -15,6 +15,7 @@ Mock.mock(/\/getAdminList/, "get", (options:GetAdminList) => {
         addrName: "@province()-@city()-@county()",
         addr: ["11", "1101", "110101"],
         id: "@id",
+        desc:'@cparagraph(1)'
       },
     ],
   });
