@@ -38,7 +38,7 @@
         ②title:生成路由必填，会生成菜单名字
         ③icon:选填，一级路由菜单icon,默认为House
         ④order:选填，菜单排序，规则默认为10，小于10向前排，相同序号按文件夹先后顺序
-        ⑤hide:选填,是否不自动生成路由，默认false,可设为true
+        ⑤hide:选填,是否不自动生成路由，默认false生成路由,可设为true
 
 ## 自定义配置
  [Vite 快速配置参考](https://cn.vitejs.dev/config/).
