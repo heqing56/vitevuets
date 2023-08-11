@@ -2,7 +2,7 @@
   <router-view></router-view>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineOptions({
     name:'test',
     title:'测试'

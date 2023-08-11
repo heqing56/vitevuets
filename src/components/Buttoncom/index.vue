@@ -1,32 +1,26 @@
 <template>
-  <el-button @click="clickFn" :loading="loading" v-bind="$attrs">
+  <el-button @click="clickFn" :loading="state.loading" v-bind="$attrs">
     <slot></slot>
   </el-button>
 </template>
 
-<script lang="ts">
-import { toRefs, reactive } from "vue";
+<script lang="ts" setup>
+import { reactive } from "vue";
 import debounce from "@/utils/debounce";
-export default {
-  emits: ["click"],
-  setup(_props, { emit }) {
-    const newClick = debounce(() => {
-      emit("click");
-      state.loading = false;
-    }, 500);
-    const state = reactive({
-      loading: false,
-      clickFn() {
-        state.loading = true;
-        newClick();
-      },
-    });
-    return {
-      ...toRefs(state),
-    };
-  },
-};
+const emit = defineEmits(["click"])
+
+const newClick = debounce(() => {
+  emit("click");
+  state.loading = false;
+}, 500);
+const state = reactive({
+  loading: false,
+
+});
+const clickFn=()=> {
+    state.loading = true;
+    newClick();
+  }
 </script>
 
-<style>
-</style>
+<style></style>

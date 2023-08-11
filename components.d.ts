@@ -7,9 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Bingtu: typeof import('./src/components/charts/bingtu/index.vue')['default']
     Buttoncom: typeof import('./src/components/Buttoncom/index.vue')['default']
-    Charts: typeof import('./src/components/charts/index.vue')['default']
     ElAffix: typeof import('element-plus/es')['ElAffix']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -31,7 +29,6 @@ declare module 'vue' {
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     Header: typeof import('./src/components/layout/Header.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Icon: typeof import('./src/components/Icon/index.vue')['default']
     Layout: typeof import('./src/components/layout/index.vue')['default']
     Nav: typeof import('./src/components/layout/Nav.vue')['default']

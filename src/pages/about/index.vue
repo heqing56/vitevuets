@@ -17,7 +17,6 @@ let list = reactive<string[]>([])
 
 const getDesFn =async <T extends Res<string[]>>() => {
   const res :T=await des() as T
-  console.log(res)
     if (res.code) {
       list.push(...res.data) 
     }
