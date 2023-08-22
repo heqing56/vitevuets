@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>option---------</div>
+    <div class="font-black">option---------</div>
     <div>state{{ counter }}</div>
     <div>getter{{ doubleCount }}</div>
     <div @click="counter--">点击counter--</div>
